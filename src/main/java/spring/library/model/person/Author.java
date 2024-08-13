@@ -6,9 +6,11 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import spring.library.model.book.Book;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -64,5 +66,13 @@ public class Author {
     @JoinColumn(name = "person_id", nullable = false, updatable = false)
     @NotNull(message = "Person cannot be null")
     private Person person;
+
+    @ManyToMany
+    @JoinTable(
+            name = "book_author",
+            joinColumns = @JoinColumn(name = "author_id"),
+            inverseJoinColumns = @JoinColumn(name = "book_id")
+    )
+    private List<Book> books;
 
 }
