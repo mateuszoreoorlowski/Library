@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
 import lombok.Value;
+import spring.library.model.book.Publishment;
 
 @Entity
 @Value
@@ -29,4 +30,8 @@ public class PhoneNumber {
     @ManyToOne
     @JoinColumn(name = "reader_id", nullable = false)
     Reader reader;
+
+    @OneToOne
+    @JoinColumn(name = "publishment_id", nullable = false)
+    Publishment publishment;
 }
